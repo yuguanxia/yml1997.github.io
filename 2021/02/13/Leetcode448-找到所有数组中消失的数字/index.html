@@ -46,22 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="当 A 的子数组 A[i], A[i+1], …, A[j] 满足下列条件时，我们称其为湍流子数组： 若 i &lt;&#x3D; k &lt; j，当 k 为奇数时， A[k] &gt; A[k+1]，且当 k 为偶数时，A[k] &lt; A[k+1]；或 若 i &lt;&#x3D; k &lt; j，当 k 为偶数时，A[k] &gt; A[k+1] ，且当 k 为奇数时， A[k] &lt; A[k+1]。">
+  <meta name="description" content="给定一个范围在  1 ≤ a[i] ≤ n ( n &#x3D; 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。 找到所有在 [1, n] 范围之间没有出现在数组中的数字。 您能在不使用额外空间且时间复杂度为O(n)的情况下完成这个任务吗? 你可以假定返回的数组不算在额外空间内。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode 978. 最长湍流子数组">
-<meta property="og:url" content="http://yoursite.com/2021/02/08/Leetcode-978-%E6%9C%80%E9%95%BF%E6%B9%8D%E6%B5%81%E5%AD%90%E6%95%B0%E7%BB%84-1/index.html">
+<meta property="og:title" content="Leetcode448. 找到所有数组中消失的数字">
+<meta property="og:url" content="http://yoursite.com/2021/02/13/Leetcode448-%E6%89%BE%E5%88%B0%E6%89%80%E6%9C%89%E6%95%B0%E7%BB%84%E4%B8%AD%E6%B6%88%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/index.html">
 <meta property="og:site_name" content="逍遥谷">
-<meta property="og:description" content="当 A 的子数组 A[i], A[i+1], …, A[j] 满足下列条件时，我们称其为湍流子数组： 若 i &lt;&#x3D; k &lt; j，当 k 为奇数时， A[k] &gt; A[k+1]，且当 k 为偶数时，A[k] &lt; A[k+1]；或 若 i &lt;&#x3D; k &lt; j，当 k 为偶数时，A[k] &gt; A[k+1] ，且当 k 为奇数时， A[k] &lt; A[k+1]。">
+<meta property="og:description" content="给定一个范围在  1 ≤ a[i] ≤ n ( n &#x3D; 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。 找到所有在 [1, n] 范围之间没有出现在数组中的数字。 您能在不使用额外空间且时间复杂度为O(n)的情况下完成这个任务吗? 你可以假定返回的数组不算在额外空间内。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2021/02/08/Leetcode-978-%E6%9C%80%E9%95%BF%E6%B9%8D%E6%B5%81%E5%AD%90%E6%95%B0%E7%BB%84-1/pic.leetcode-cn.com/1612746849-AHrNUH-978.gif">
-<meta property="article:published_time" content="2021-02-08T13:01:00.000Z">
-<meta property="article:modified_time" content="2021-02-09T06:51:44.765Z">
+<meta property="article:published_time" content="2021-02-13T15:54:00.000Z">
+<meta property="article:modified_time" content="2021-02-13T16:41:26.864Z">
 <meta property="article:author" content="Fischer Yu">
-<meta property="article:tag" content="leetcode每日一题">
+<meta property="article:tag" content="Leetcode每日一题">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2021/02/08/Leetcode-978-%E6%9C%80%E9%95%BF%E6%B9%8D%E6%B5%81%E5%AD%90%E6%95%B0%E7%BB%84-1/pic.leetcode-cn.com/1612746849-AHrNUH-978.gif">
 
-<link rel="canonical" href="http://yoursite.com/2021/02/08/Leetcode-978-%E6%9C%80%E9%95%BF%E6%B9%8D%E6%B5%81%E5%AD%90%E6%95%B0%E7%BB%84-1/">
+<link rel="canonical" href="http://yoursite.com/2021/02/13/Leetcode448-%E6%89%BE%E5%88%B0%E6%89%80%E6%9C%89%E6%95%B0%E7%BB%84%E4%B8%AD%E6%B6%88%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/">
 
 
 <script id="page-configurations">
@@ -73,7 +71,7 @@
   };
 </script>
 
-  <title>Leetcode 978. 最长湍流子数组 | 逍遥谷</title>
+  <title>Leetcode448. 找到所有数组中消失的数字 | 逍遥谷</title>
   
 
 
@@ -178,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/08/Leetcode-978-%E6%9C%80%E9%95%BF%E6%B9%8D%E6%B5%81%E5%AD%90%E6%95%B0%E7%BB%84-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/13/Leetcode448-%E6%89%BE%E5%88%B0%E6%89%80%E6%9C%89%E6%95%B0%E7%BB%84%E4%B8%AD%E6%B6%88%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
@@ -191,7 +189,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Leetcode 978. 最长湍流子数组
+          Leetcode448. 找到所有数组中消失的数字
         </h1>
 
         <div class="post-meta">
@@ -201,14 +199,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-02-08 21:01:00" itemprop="dateCreated datePublished" datetime="2021-02-08T21:01:00+08:00">2021-02-08</time>
+              <time title="创建时间：2021-02-13 23:54:00" itemprop="dateCreated datePublished" datetime="2021-02-13T23:54:00+08:00">2021-02-13</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-09 14:51:44" itemprop="dateModified" datetime="2021-02-09T14:51:44+08:00">2021-02-09</time>
+                <time title="修改时间：2021-02-14 00:41:26" itemprop="dateModified" datetime="2021-02-14T00:41:26+08:00">2021-02-14</time>
               </span>
 
           
@@ -222,20 +220,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>当 A 的子数组 A[i], A[i+1], …, A[j] 满足下列条件时，我们称其为湍流子数组：</p>
-<p>若 i &lt;= k &lt; j，当 k 为奇数时， A[k] &gt; A[k+1]，且当 k 为偶数时，A[k] &lt; A[k+1]；<br>或 若 i &lt;= k &lt; j，当 k 为偶数时，A[k] &gt; A[k+1] ，且当 k 为奇数时， A[k] &lt; A[k+1]。<br>也就是说，如果比较符号在子数组中的每个相邻元素对之间翻转，则该子数组是湍流子数组。</p>
-<p>返回 A 的最大湍流子数组的长度。</p>
-<p><a href="https://leetcode-cn.com/problems/longest-turbulent-subarray/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-turbulent-subarray/</a></p>
+        <p>给定一个范围在  1 ≤ a[i] ≤ n ( n = 数组大小 ) 的 整型数组，数组中的元素一些出现了两次，另一些只出现一次。</p>
+<p>找到所有在 [1, n] 范围之间没有出现在数组中的数字。</p>
+<p>您能在不使用额外空间且时间复杂度为<strong>O(n)</strong>的情况下完成这个任务吗? 你可以假定返回的数组不算在额外空间内。</p>
 <a id="more"></a>
 
-<p>Python解</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxTurbulenceSize</span><span class="params">(self, a: List[int])</span> -&gt; int:</span></span><br><span class="line">        count = <span class="number">1</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range (<span class="number">1</span>,len(a)):</span><br><span class="line">            <span class="keyword">if</span> a[j] == a[j<span class="number">-1</span>]:</span><br><span class="line">                i = j</span><br><span class="line">            <span class="keyword">elif</span> j !=<span class="number">1</span> <span class="keyword">and</span> (a[j]-a[j<span class="number">-1</span>])^(a[j<span class="number">-1</span>]-a[j<span class="number">-2</span>])&gt;=<span class="number">0</span>:</span><br><span class="line">                i = j<span class="number">-1</span></span><br><span class="line">            count = max(count, j-i+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
-<p> 此法利用了^，如果两边同号，则大于0。来推算该数组的子序列</p>
-<p>python解2</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxTurbulenceSize</span><span class="params">(self, arr)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type arr: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        N = len(arr)</span><br><span class="line">        up = [<span class="number">1</span>] * N</span><br><span class="line">        down = [<span class="number">1</span>] * N</span><br><span class="line">        res = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, N):</span><br><span class="line">            <span class="keyword">if</span> arr[i - <span class="number">1</span>] &lt; arr[i]:</span><br><span class="line">                up[i] = down[i - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                down[i] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> arr[i - <span class="number">1</span>] &gt; arr[i]:</span><br><span class="line">                up[i] = <span class="number">1</span></span><br><span class="line">                down[i] = up[i - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                up[i] = <span class="number">1</span></span><br><span class="line">                down[i] = <span class="number">1</span></span><br><span class="line">            res = max(res, max(up[i], down[i]))</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
-<p> 此法利用了动态规划的思想，用两个数组（up、down）来记录状态的变化，从而得到折线的子序列。</p>
-<p> <img src="pic.leetcode-cn.com/1612746849-AHrNUH-978.gif" alt="avatar"></p>
+
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p>输入:<br>[4,3,2,7,8,2,3,1]</p>
+<p>输出:<br>[5,6]</p>
+<p><a href="https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/</a></p>
+<h4 id="Python-解"><a href="#Python-解" class="headerlink" title="Python 解"></a>Python 解</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDisappearedNumbers</span><span class="params">(self, nums: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        counter = set(nums)</span><br><span class="line">        N = len(nums)</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range (<span class="number">1</span>, N+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> counter:</span><br><span class="line">                res.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>集合(set)</strong>的查找时间复杂度可以降低到 O(1)，符合题意, 直接用list遍历会超标</p>
+<p><br><br><br></p>
+<h4 id="索引标记法（无额外空间开销）"><a href="#索引标记法（无额外空间开销）" class="headerlink" title="索引标记法（无额外空间开销）"></a>索引标记法（无额外空间开销）</h4><p>观察nums列表，其元素值均在1 ~ n 范围内，当且仅当不缺少数字时，nums拥有1 ~ n 的所有整数且不重复。</p>
+<p>所以，我们可以将遍历nums，将每个元素的绝对值-1 作为索引，将索引对应的元素变为其原本绝对值的负数，即利用负号标记该索引位置，此时未被标记的位置，其索引+1即为缺失数字。</p>
+<p>例如：nums=[4,3,2,7,8,2,3,1]，要标记 nums[4] 对应的 8 时，根据 nums[abs(num) - 1] = -abs(nums[abs(num) - 1]) 公式，则必须先满足 abs(num)-1==4，而nums中并不存在绝对值为 5 的元素，即 8 未标记时说明缺失数字 5。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDisappearedNumbers</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">for</span> i, num <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">            <span class="keyword">if</span> nums[abs(num) - <span class="number">1</span>] &gt; <span class="number">0</span>:</span><br><span class="line">                nums[abs(num) - <span class="number">1</span>] *= <span class="number">-1</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; <span class="number">0</span>:</span><br><span class="line">                res.append(i + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -245,7 +246,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag"># leetcode每日一题</a>
+              <a href="/tags/Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag"># Leetcode每日一题</a>
           </div>
 
         
@@ -254,13 +255,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/02/08/Leetcode-978-%E6%9C%80%E9%95%BF%E6%B9%8D%E6%B5%81%E5%AD%90%E6%95%B0%E7%BB%84/" rel="prev" title="Leetcode 567. 字符串的排列（滑动窗口）">
-      <i class="fa fa-chevron-left"></i> Leetcode 567. 字符串的排列（滑动窗口）
+    <a href="/2021/02/09/Leetcode-992-K-%E4%B8%AA%E4%B8%8D%E5%90%8C%E6%95%B4%E6%95%B0%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" rel="prev" title="Leetcode 992. K 个不同整数的子数组（滑动窗口）">
+      <i class="fa fa-chevron-left"></i> Leetcode 992. K 个不同整数的子数组（滑动窗口）
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/02/08/hello-world/" rel="next" title="Hello World">
-      Hello World <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -320,6 +318,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例"><span class="nav-number">1.</span> <span class="nav-text">示例:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-解"><span class="nav-number">2.</span> <span class="nav-text">Python 解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引标记法（无额外空间开销）"><span class="nav-number">3.</span> <span class="nav-text">索引标记法（无额外空间开销）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
