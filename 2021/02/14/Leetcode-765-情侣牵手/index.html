@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yuguanxia.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。 人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。 这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上的人决定的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 765. 情侣牵手">
+<meta property="og:url" content="http://yuguanxia.github.io/2021/02/14/Leetcode-765-%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B/index.html">
+<meta property="og:site_name" content="逍遥谷">
+<meta property="og:description" content="N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。 人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。 这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上的人决定的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-14T08:38:00.000Z">
+<meta property="article:modified_time" content="2021-02-14T09:23:39.671Z">
+<meta property="article:author" content="Fischer Yu">
+<meta property="article:tag" content="Leetcode每日一题">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yuguanxia.github.io/2021/02/14/Leetcode-765-%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Leetcode 765. 情侣牵手 | 逍遥谷</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">逍遥谷</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">外门弟子自留地</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yuguanxia.github.io/2021/02/14/Leetcode-765-%E6%83%85%E4%BE%A3%E7%89%B5%E6%89%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Fischer Yu">
+      <meta itemprop="description" content="努力学习炼丹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="逍遥谷">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Leetcode 765. 情侣牵手
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-14 16:38:00 / 修改时间：17:23:39" itemprop="dateCreated datePublished" datetime="2021-02-14T16:38:00+08:00">2021-02-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>N 对情侣坐在连续排列的 2N 个座位上，想要牵到对方的手。 计算最少交换座位的次数，以便每对情侣可以并肩坐在一起。 一次交换可选择任意两人，让他们站起来交换座位。</p>
+<p>人和座位用 0 到 2N-1 的整数表示，情侣们按顺序编号，第一对是 (0, 1)，第二对是 (2, 3)，以此类推，最后一对是 (2N-2, 2N-1)。</p>
+<p>这些情侣的初始座位  row[i] 是由最初始坐在第 i 个座位上的人决定的。</p>
+<a id="more"></a>
+<h5 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h5><p>输入: row = [0, 2, 1, 3]<br>输出: 1<br>解释: 我们只需要交换 row[1] 和 row[2] 的位置即可。</p>
+<h5 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h5><p>输入: row = [3, 2, 0, 1]<br>输出: 0<br>解释: 无需交换座位，所有的情侣都已经可以手牵手了。    </p>
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><p>len(row) 是偶数且数值在 [4, 60]范围内。<br>可以保证row 是序列 0…len(row)-1 的一个全排列。</p>
+<p><a href="https://leetcode-cn.com/problems/couples-holding-hands" target="_blank" rel="noopener">https://leetcode-cn.com/problems/couples-holding-hands</a></p>
+<h2 id="Python-解"><a href="#Python-解" class="headerlink" title="Python 解"></a>Python 解</h2><h4 id="暴力法（贪心算法）"><a href="#暴力法（贪心算法）" class="headerlink" title="暴力法（贪心算法）"></a>暴力法（贪心算法）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSwapsCouples</span><span class="params">(self, row: List[int])</span> -&gt; int:</span></span><br><span class="line">        N = len(row)</span><br><span class="line">        counter = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range (<span class="number">0</span>,N<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">and</span> row[i] % <span class="number">2</span> ==<span class="number">0</span> <span class="keyword">and</span> row[i+<span class="number">1</span>]-row[i] != <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, N):</span><br><span class="line">                    <span class="keyword">if</span>  row[j]-row[i] == <span class="number">1</span>:</span><br><span class="line">                        row[i + <span class="number">1</span>], row[j] = row[j], row[i + <span class="number">1</span>]</span><br><span class="line">                counter += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">and</span> row[i] % <span class="number">2</span> !=<span class="number">0</span> <span class="keyword">and</span> row[i]-row[i+<span class="number">1</span>] != <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, N):</span><br><span class="line">                    <span class="keyword">if</span>  row[i]-row[j] == <span class="number">1</span>:</span><br><span class="line">                        row[i + <span class="number">1</span>], row[j] = row[j], row[i + <span class="number">1</span>]</span><br><span class="line">                counter += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> counter</span><br></pre></td></tr></table></figure>
+
+<p>list偶数位置的部分和奇数位置的部分作比较（从row[0]开始），list的值如果是偶数，则下一个数字一定要比他大1，奇数则小1.然后再遍历之后的位置进行更换即可。</p>
+<p>时间复杂度：O(N ^ 2)，题目给出的 len(row) 在 60 以内，耗时 36 ms。<br>空间复杂度：O(1)，内存消耗 14.9 MB。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSwapsCouples</span><span class="params">(self, row)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type row: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        N = len(row)</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, N - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span> row[i] == row[i + <span class="number">1</span>] ^ <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, N):</span><br><span class="line">                <span class="keyword">if</span> row[i] == row[j] ^ <span class="number">1</span>:</span><br><span class="line">                    row[i + <span class="number">1</span>], row[j] = row[j], row[i + <span class="number">1</span>]</span><br><span class="line">            res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>大佬的解法，内在逻辑是一样的</p>
+<p>i的range按照每2个起跳就好</p>
+<p><strong>位运算</strong></p>
+<p>在求数字 x 的对象时用到了一个技巧，x 的对象是x ^ 1。解释如下：</p>
+<p>当 x 是偶数，则其二进制的末尾是 0，所以 x ^ 1 将其二进制的末尾改成 1，于是得到了x的对象 x+1。</p>
+<p>当 x 是奇数，则其二进制的末尾是 1，所以 x ^ 1 将其二进制的末尾改成 0，于是得到了x的对象x−1。</p>
+<h4 id="降低时间复杂度到O-N-（贪心算法优化）"><a href="#降低时间复杂度到O-N-（贪心算法优化）" class="headerlink" title="降低时间复杂度到O(N)（贪心算法优化）"></a>降低时间复杂度到O(N)（贪心算法优化）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSwapsCouples</span><span class="params">(self, row: List[int])</span> -&gt; int:</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        seatmap= [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(row))]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(row)):</span><br><span class="line">            seatmap[row[j]] = j<span class="comment">#序号为row[j]的人的座位号为j</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(row),<span class="number">2</span>):</span><br><span class="line">            x = row[i]^<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> x == row[i+<span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                index = seatmap[x]<span class="comment">#找到序号为x的人对应的座位号</span></span><br><span class="line">                row[i+<span class="number">1</span>],row[index] = row[index],row[i+<span class="number">1</span>]<span class="comment">#交换座位使情侣坐一起</span></span><br><span class="line">                <span class="comment">#此时需要更新seatmap的信息</span></span><br><span class="line">                seatmap[x] = i+<span class="number">1</span><span class="comment">#序号为x的人现在在座位i+1上</span></span><br><span class="line">                seatmap[row[index]] = index<span class="comment">#序号为row[index]的人现在在做为index上</span></span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>可以利用一个列表来保存座位信息，即序号为seatmap[row[i]] = i代表序号为row[i]的人座位号是i，这样在找情侣的时候可以直接在seatmap中进行索引，注意交换位置后需要对seatmap进行相应的更新</p>
+<p>时间复杂度O(n)，空间复杂度O(n)</p>
+<h4 id="降低时间复杂度到O-N-（并查集）"><a href="#降低时间复杂度到O-N-（并查集）" class="headerlink" title="降低时间复杂度到O(N)（并查集）"></a>降低时间复杂度到O(N)（并查集）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DisjointSetUnion</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        self.parent = list(range(n))</span><br><span class="line">        self.rank = [<span class="number">1</span>] * n</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(self, idx)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.parent[idx] != idx:</span><br><span class="line">            self.parent[idx] = self.find(self.parent[idx])</span><br><span class="line">        <span class="keyword">return</span> self.parent[idx]</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">union</span><span class="params">(self, idx1, idx2)</span>:</span></span><br><span class="line">        root1, root2 = self.find(idx1), self.find(idx2)</span><br><span class="line">        <span class="keyword">if</span> root1 == root2: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> self.rank[root1] &lt; self.rank[root2]:</span><br><span class="line">            self.parent[root1] = root2</span><br><span class="line">            self.rank[root2] += self.rank[root1]</span><br><span class="line">        <span class="keyword">elif</span> self.rank[root1] &gt; self.rank[root2]:</span><br><span class="line">            self.parent[root2] = root1</span><br><span class="line">            self.rank[root1] += self.rank[root2]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.parent[root1] = root2</span><br><span class="line">            self.rank[root2] += self.rank[root1]</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSwapsCouples</span><span class="params">(self, row: List[int])</span> -&gt; int:</span></span><br><span class="line">        l = len(row)</span><br><span class="line">        n = l // <span class="number">2</span></span><br><span class="line">        uf = DisjointSetUnion(n)</span><br><span class="line">        <span class="comment"># 合并有关系的节点</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, l, <span class="number">2</span>):</span><br><span class="line">            uf.union(row[i] // <span class="number">2</span>, row[i + <span class="number">1</span>] // <span class="number">2</span>)</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 叠加每个联通分量</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="comment"># 用根节点的rank</span></span><br><span class="line">            <span class="keyword">if</span> uf.parent[i] == i:</span><br><span class="line">                res += uf.rank[i] - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>如果有三对情侣已经坐好，就有三个连通分量，三个情侣都没坐好，就是只有一个连通分量，则最少交换次数为两次，即为3-1.可以使用<strong>并查集</strong>查看交换的次数</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag"># Leetcode每日一题</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/13/Leetcode448-%E6%89%BE%E5%88%B0%E6%89%80%E6%9C%89%E6%95%B0%E7%BB%84%E4%B8%AD%E6%B6%88%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/" rel="prev" title="Leetcode 448. 找到所有数组中消失的数字">
+      <i class="fa fa-chevron-left"></i> Leetcode 448. 找到所有数组中消失的数字
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#示例-1"><span class="nav-number">1.</span> <span class="nav-text">示例 1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#示例-2"><span class="nav-number">2.</span> <span class="nav-text">示例 2:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#说明"><span class="nav-number">3.</span> <span class="nav-text">说明:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-解"><span class="nav-number"></span> <span class="nav-text">Python 解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力法（贪心算法）"><span class="nav-number"></span> <span class="nav-text">暴力法（贪心算法）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#降低时间复杂度到O-N-（贪心算法优化）"><span class="nav-number"></span> <span class="nav-text">降低时间复杂度到O(N)（贪心算法优化）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#降低时间复杂度到O-N-（并查集）"><span class="nav-number"></span> <span class="nav-text">降低时间复杂度到O(N)（并查集）</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fischer Yu"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Fischer Yu</p>
+  <div class="site-description" itemprop="description">努力学习炼丹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuguanxia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuguanxia" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yuminglei1997@foxmail.com" title="E-Mail → yuminglei1997@foxmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.weibo.com/1731725340/" title="Weibo → https:&#x2F;&#x2F;www.weibo.com&#x2F;1731725340&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fischer Yu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
